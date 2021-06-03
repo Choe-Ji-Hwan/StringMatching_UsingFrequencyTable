@@ -3,7 +3,7 @@
 #include <chrono>
 using namespace std;
 
-#define REFER 1000000
+#define REFER 10000
 
 // reference를 만들기 (완료)
 // 빈도 테이블 만들기. (완료)

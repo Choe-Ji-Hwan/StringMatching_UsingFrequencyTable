@@ -1,7 +1,17 @@
-﻿  main.cpp
-c:\users\wlghk\source\repos\algorithmproject_1\algorithmproject_1\main.cpp(40): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-c:\users\wlghk\source\repos\algorithmproject_1\algorithmproject_1\main.cpp(129): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-c:\users\wlghk\source\repos\algorithmproject_1\algorithmproject_1\main.cpp(131): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\wlghk\source\repos\algorithmproject_1\algorithmproject_1\main.cpp(132): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\wlghk\source\repos\algorithmproject_1\algorithmproject_1\main.cpp(146): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+﻿  FrequencyTable.cpp
+c:\users\wlghk\source\repos\algorithmproject_1\algorithmproject_1\frequencytable.cpp(85): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\wlghk\source\repos\algorithmproject_1\algorithmproject_1\frequencytable.cpp(87): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\wlghk\source\repos\algorithmproject_1\algorithmproject_1\frequencytable.cpp(88): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\wlghk\source\repos\algorithmproject_1\algorithmproject_1\frequencytable.cpp(103): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  MakeFileGenerator.cpp
+c:\users\wlghk\source\repos\algorithmproject_1\algorithmproject_1\makefilegenerator.cpp(48): warning C4018: '<': signed/unsigned mismatch
+c:\users\wlghk\source\repos\algorithmproject_1\algorithmproject_1\makefilegenerator.cpp(54): warning C4018: '<': signed/unsigned mismatch
+c:\users\wlghk\source\repos\algorithmproject_1\algorithmproject_1\makefilegenerator.cpp(80): warning C4018: '>': signed/unsigned mismatch
+c:\users\wlghk\source\repos\algorithmproject_1\algorithmproject_1\makefilegenerator.cpp(119): warning C4018: '<': signed/unsigned mismatch
+  RestoreMySequence.cpp
+c:\users\wlghk\source\repos\algorithmproject_1\algorithmproject_1\restoremysequence.cpp(92): warning C4018: '<': signed/unsigned mismatch
+c:\users\wlghk\source\repos\algorithmproject_1\algorithmproject_1\restoremysequence.cpp(112): warning C4018: '<': signed/unsigned mismatch
+c:\users\wlghk\source\repos\algorithmproject_1\algorithmproject_1\restoremysequence.cpp(128): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  main.cpp
   algorithmProject_1.vcxproj -> C:\Users\wlghk\source\repos\algorithmProject_1\Debug\algorithmProject_1.exe
