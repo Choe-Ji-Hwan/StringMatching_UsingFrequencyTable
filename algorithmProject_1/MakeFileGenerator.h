@@ -146,6 +146,13 @@ public:
 		return fromfile;
 	}
 
+	void setFileString(std::string filename, std::string content) {
+		std::ofstream writefile;
+		writefile.open(filename);
 
-private:
+		if (writefile.is_open()) {
+			writefile << content;
+		}
+		writefile.close();
+	}
 };

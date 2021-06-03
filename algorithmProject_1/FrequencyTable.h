@@ -33,6 +33,16 @@ public:
 		std::cout << "table 만드는데 걸리는 시간 " << sec.count() << " seconds" << std::endl;
 	}
 
+	std::string getPattern(int index) {
+		return pattern[index];
+	}
+	int getFrequency(int index) {
+		return frequency[index];
+	}
+	vector<int> getStartIndexArray(int index) {
+		return startIndex[index];
+	}
+
 private:
 	void makeRows() // 열을 채우면서 행을 완성하면서 만들기
 	{

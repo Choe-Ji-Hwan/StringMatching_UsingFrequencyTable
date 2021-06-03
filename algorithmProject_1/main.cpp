@@ -1,6 +1,5 @@
 #include <iostream>
-#include "MakeFileGenerator.h"
-#include "FrequencyTable.h"
+#include "RestoreMySequence.h"
 #include <chrono>
 using namespace std;
 
@@ -36,15 +35,15 @@ int main() {
 
 	// make table
 	factory.makeRandomFile(REFER, "reference.txt");
-	string reference = factory.getFileString("reference.txt");
-	//string reference = getFileString2("reference.txt");
-	FrequencyTable table(reference, 8, REFER);
-	table.makeTable();
+	//string reference = factory.getFileString("reference.txt");
 
+	// make mysequence, short read
 	int k = 30;
-
 	factory.makeMySqeunce(k, REFER, "reference.txt", "mysequence.txt");
 	factory.makeShortRead(k, REFER, "mysequence.txt" , "shortread.txt");
 
-
+	// matching
+	int allpatternCut = 8;
+	RestoreMySequence restore(k, REFER, "reference.txt", "shortread.txt");
+	restore.doProcess("resultMySequence.txt", allpatternCut);
 }
