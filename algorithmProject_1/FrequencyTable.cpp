@@ -20,8 +20,6 @@ FrequencyTable::~FrequencyTable() {
 void FrequencyTable::makeTable() {
 	std::cout << "table을 만들기 시작합니다." << std::endl;
 	std::chrono::system_clock::time_point start = std::chrono::system_clock::now();
-	std::string allCase = "";
-	int count = 0;
 
 	// 모든 경우의 수 넣기
 	makeRows();	// 각각의 row들을 만드는 중.
@@ -45,7 +43,9 @@ std::vector<int> FrequencyTable::getStartIndexArray(int index) {
 void FrequencyTable::makeRows() // 열을 채우면서 행을 완성하면서 만들기
 {
 	std::vector<char> combi(originalSize);
-	fillTheTable(combi, 0, 0);
+	fillTheTable(combi, 0, 0);	// 첫번 째 열 채우기
+	findStartIndex(); // 2, 3번째 열 채우기 
+	std::cout << "열 완성" << std::endl;
 }
 
 void FrequencyTable::fillTheTable(std::vector<char> combi, int index, int depth) // 재귀를 이용해서 채우기 
@@ -53,13 +53,8 @@ void FrequencyTable::fillTheTable(std::vector<char> combi, int index, int depth)
 	//dnaString
 	if (depth == 8) {
 		for (int i = 0; i < cutSize; i++) {
-			pattern[indexing] += combi[i];									// 첫번째 열 채우기
+			pattern[indexing] += combi[i];	// 첫번째 열 채우기
 		}
-		//std::cout << pattern[indexing] << ": ";
-		int count = rabinKarp(pattern[indexing], cutSize, originalSize);	// 세번째 열 채우기 및 두번 째열 값 리턴
-		frequency[indexing] = count;										// 두번째 열 채우기
-		if(indexing % 10000 == 0)
-		std::cout << indexing << "열 완성" << std::endl;
 		indexing++;
 		return;
 	}
@@ -71,38 +66,37 @@ void FrequencyTable::fillTheTable(std::vector<char> combi, int index, int depth)
 	}
 }
 
-// use Rabin Karp algorithm
-int FrequencyTable::rabinKarp(std::string pattern, int TOFIND, int NUM) {
-	// ASCII 'A'=65, 'T'=84, 'G'=71, 'C'=67 % 5
 
-	int cnt = 0;
-	int h = 0;	// init
-	int t = 0;	// init
-	int d = 4;	// A,T,G,C
-	int q = 13;
-	int m = TOFIND;	// pattern length
+void FrequencyTable::findStartIndex() {
 
-	int D = fmod(pow(d, m - 1), q);		// D = d^(m-1) mod q
-	for (int i = 0; i <= m - 1; i++) {
-		h = fmod((d*h + pattern[i] % 5), q);	// 패턴의 hash
-		t = fmod((d*t + originalString[i] % 5), q);	// 패턴의 string만큼 비교되는 것의 hash
-	}
+	MakeFileGenerator factory;
 
-	for (int s = 0; s < NUM - m + 1; s++) {
-		if (h == t) {	// 해시 값이 같을 경우
-			for (int i = 0; i < m; i++) {
-				if (pattern[i] != originalString[s + i]) break;
-				if (i + 1 == m) {
-					cnt++;
-					startIndex[indexing].push_back(s);
-					//std::cout << ".";
+	std::string reference = factory.getFileString("reference.txt");
+	std::istringstream ss(reference);
+
+	std::string line, window;
+	while (ss >> line) {	//\n을 구분자로 ShortRead를 문장단위로 가져옴
+		for (int i = 0; i < originalSize - cutSize; i++) {
+			int index = 0;
+			window = line.substr(i, cutSize);
+			for (int j = 0; j < 8; j++) {	//해당 빈도수 자리의 빈도값++
+				switch (window[j])
+				{
+				case 'A':
+					break;
+				case 'C':
+					index = index + pow(4, 7 - j);
+					break;
+				case 'G':
+					index = index + 2 * pow(4, 7 - j);
+					break;
+				case 'T':
+					index = index + 3 * pow(4, 7 - j);
+					break;
 				}
 			}
-		}
-		if (s < NUM - m) {
-			t = fmod((d*(t - originalString[s] % 5 * D) + originalString[s + m] % 5), q);	// 한칸 밀어서 비교되는 것 다시 해시 계산
-			if (t < 0) t += q;	// 음수가 나올 경우 나눈 수를 다시 더 해줌
+			startIndex[index].push_back(i);
+			frequency[index]++;
 		}
 	}
-	return cnt;
 }

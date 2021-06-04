@@ -1,5 +1,4 @@
 #pragma once
-#include "MakeFileGenerator.h"
 #include "FrequencyTable.h"
 #include <algorithm>
 
@@ -13,7 +12,7 @@ private:
 	//bool compare(std::pair<int, std::pair<int, int>>& a, std::pair<int, std::pair<int, int>>& b);
 
 	std::string referline;
-	std::string shortreadline;
+	std::vector<std::string> shortreadline;
 	std::string resultline;
 
 	int cutSize;

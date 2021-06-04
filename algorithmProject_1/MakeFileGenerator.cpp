@@ -86,7 +86,7 @@ void MakeFileGenerator::makeMySqeunce(int k, int n, std::string originalFileName
 	 readfile.close(); mySquence.close();
  }
 
-void MakeFileGenerator::makeShortRead(int k, int n, std::string originalFileName, std::string resultFileName) {
+void MakeFileGenerator::makeShortRead(int k, int n, int number, std::string originalFileName, std::string resultFileName) {
 	std::cout << "short read가 만들어지는 중..." << std::endl;
 	std::string line;
 	std::ifstream mysequence;
@@ -104,7 +104,7 @@ void MakeFileGenerator::makeShortRead(int k, int n, std::string originalFileName
 
 	// indexing이 1인 pick을 shortread의 시작 index로
 	int pick = squencepick(gen);
-	for (int i = 0; i < n; i++) {
+	for (int i = 0; i < number; i++) {
 		while (indexing[pick] != 0) {
 			pick = squencepick(gen);
 		}
@@ -121,6 +121,7 @@ void MakeFileGenerator::makeShortRead(int k, int n, std::string originalFileName
 				if (indexing.at(i) == 0) continue;	// 1이면 그것을 시작 주소로 shortread로 읽음
 				else {// indexing의 index 안에 값이 1이 경우
 					shortreadstring += line.substr(i, k);
+					shortreadstring += '\n';
 				}
 			}
 		}
@@ -141,6 +142,24 @@ std::string MakeFileGenerator::getFileString(std::string filename) {
 	}
 	readfile.close();
 	return fromfile;
+}
+
+std::vector<std::string> MakeFileGenerator::getStringForSR(std::string filename) {
+	std::ifstream readfile;
+	readfile.open(filename);
+	readfile.clear();
+	std::string fromfile;
+
+	std::vector<std::string> saveshortread;
+
+	if (readfile.is_open()) {
+		while (!readfile.eof()) {
+			std::getline(readfile, fromfile);
+			saveshortread.push_back(fromfile);
+		}
+	}
+	readfile.close();
+	return saveshortread;
 }
 
 void MakeFileGenerator::setFileString(std::string filename, std::string content) {

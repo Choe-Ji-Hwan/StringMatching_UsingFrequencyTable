@@ -3,6 +3,8 @@
 #include <vector>
 #include <chrono>
 #include <iostream>
+#include <sstream>
+#include "MakeFileGenerator.h"
 class FrequencyTable {
 public:
 
@@ -17,8 +19,7 @@ public:
 private:
 	void makeRows();
 	void fillTheTable(std::vector<char> combi, int index, int depth);
-	int rabinKarp(std::string pattern, int TOFIND, int NUM);	// use Rabin Karp algorithm
-
+	void findStartIndex();
 
 	char dnaString[4] = { 'A', 'C', 'G', 'T' };
 	std::string originalString;
