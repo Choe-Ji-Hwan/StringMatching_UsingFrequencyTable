@@ -98,7 +98,7 @@ void MakeFileGenerator::makeShortRead(int k, int n, int number, std::string orig
 
 	std::random_device rd;
 	std::mt19937_64 gen(rd());
-	std::uniform_int_distribution<int> squencepick(0, n - 1);
+	std::uniform_int_distribution<int> squencepick(0, n - 1 - k);
 
 	std::vector<int> indexing(n);
 

@@ -83,12 +83,7 @@ void RestoreMySequence::doProcess(std::string resultFileName, int patternCutSize
 			//std::cout << "\ngetindex: " << newGetIndex <<" 선택된 pattern은 " << table->getPattern(newGetIndex) << std::endl;
 			for (int ref = 0; ref < table->getStartIndexArray(newGetIndex).size(); ref++) {
 
-				if (table->getStartIndexArray(newGetIndex)[ref] - newindex < 0) {
-					std::cout << "newindex : " << newindex << ", table에서 가져온 index: " << table->getStartIndexArray(newGetIndex)[ref] - newindex
-						<< ", size는 " << table->getStartIndexArray(newGetIndex).size() << std::endl;
-					std::cout << "여기가 문제임" << std::endl;
-					continue;
-				}
+				if (table->getStartIndexArray(newGetIndex)[ref] - newindex < 0) continue;	// 이미 이전 패턴에서 커버됨.
 				std::string partReferLine = referline.substr(table->getStartIndexArray(newGetIndex)[ref]-newindex, cutSize);
 				//std::cout << "가져온 것 " << partReferLine << std::endl;
 				int mismatches = 0;
@@ -146,7 +141,7 @@ void RestoreMySequence::doProcess(std::string resultFileName, int patternCutSize
 							= referline[table->getStartIndexArray(newGetIndex)[ref] - newindex + s];	// 본문에서 바꿔주기
 					}
 					for (auto iter = mismatchesindex.begin(); iter != mismatchesindex.end(); iter++) {
-						resultline[table->getStartIndexArray(newGetIndex)[ref] - newindex + *iter] = buffer[i][*iter]; // 바꿔주기
+						resultline[table->getStartIndexArray(newGetIndex)[ref] - newindex + *iter] = buffer[i][*iter]; // 해당 mismatch만 바꿔주기
 					}
 					isfind = true;
 				}

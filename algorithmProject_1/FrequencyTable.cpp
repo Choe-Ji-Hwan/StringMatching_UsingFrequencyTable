@@ -85,13 +85,13 @@ void FrequencyTable::findStartIndex() {
 				case 'A':
 					break;
 				case 'C':
-					index = index + pow(4, 7 - j);
+					index +=  (pow(4, cutSize-1 - j));
 					break;
 				case 'G':
-					index = index + 2 * pow(4, 7 - j);
+					index += (2 * pow(4, cutSize - 1 - j));
 					break;
 				case 'T':
-					index = index + 3 * pow(4, 7 - j);
+					index += (3 * pow(4, cutSize - 1 - j));
 					break;
 				}
 			}
