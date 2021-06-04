@@ -46,4 +46,5 @@ int main() {
 	int allpatternCut = 8;
 	RestoreMySequence restore(k, REFER, "reference.txt", "shortread.txt");
 	restore.doProcess("resultMySequence.txt", allpatternCut);
+	restore.showMatchingRate("mysequence.txt", "result.txt");
 }
