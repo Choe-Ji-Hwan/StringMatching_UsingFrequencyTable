@@ -60,11 +60,11 @@ void RestoreMySequence::doProcess(std::string resultFileName, int patternCutSize
 		
 		std::sort(&minArray[0], &minArray[(cutSize-patternCutSize)], compare);	// frequency를 기준으로 오름차순 정렬
 
-		/*for (int ii = 0; ii < cutSize - patternCutSize; ii++) {
-			std::cout << "fre: " << minArray[ii].first << std::endl;
-			std::cout << "index: " << minArray[ii].second.first << std::endl;
+		for (int ii = 0; ii < cutSize - patternCutSize; ii++) {
+			std::cout << "fre: " << minArray[ii].first << ", ";
+			std::cout << "index: " << minArray[ii].second.first << ", ";
 			std::cout << "getindex: " << minArray[ii].second.second << std::endl;
-		}*/
+		}
 
 		int allowMismatches = 4;
 		std::vector<int> mismatchesindex;
@@ -75,8 +75,10 @@ void RestoreMySequence::doProcess(std::string resultFileName, int patternCutSize
 			int newGetIndex = minArray[in].second.second;
 			int newindex = minArray[in].second.first;
 
-			//std::cout <<  "getindex: "<<newGetIndex << std::endl;
-			//std::cout << "index: "<<newindex << std::endl;
+			std::cout <<  "getindex: "<<newGetIndex << std::endl;
+			std::cout << "index: "<<newindex << std::endl;
+
+			bool isfind = false;
 
 			for (int ref = 0; ref < table->getStartIndexArray(newGetIndex).size(); ref++) {
 				std::string partReferLine = referline.substr(table->getStartIndexArray(newGetIndex)[ref]-newindex, cutSize);
@@ -136,11 +138,13 @@ void RestoreMySequence::doProcess(std::string resultFileName, int patternCutSize
 					for (auto iter = mismatchesindex.begin(); iter != mismatchesindex.end(); iter++) {
 						resultline[table->getStartIndexArray(newGetIndex)[ref] - newindex + *iter] = buffer[i][*iter]; // 바꿔주기
 					}
-					break;
+					isfind = true;
 				}
-
 				for (int t = 0; t < mismatchesindex.size(); t++)
 					mismatchesindex.pop_back();
+			}
+			if (isfind) {
+				break;
 			}
 		}
 		std::cout << "buffer count : " << i << std::endl;
