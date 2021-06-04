@@ -3,7 +3,7 @@
 #include <chrono>
 using namespace std;
 
-#define REFER 100000
+#define REFER 1000000
 
 // reference를 만들기 (완료)
 // 빈도 테이블 만들기. (완료)
@@ -40,7 +40,7 @@ int main() {
 	// make mysequence, short read
 	int k = 30;
 	factory.makeMySqeunce(k, REFER, "reference.txt", "mysequence.txt");
-	factory.makeShortRead(k, REFER, 4000, "mysequence.txt" , "shortread.txt");
+	factory.makeShortRead(k, REFER, 40000, "mysequence.txt" , "shortread.txt");
 
 	// matching
 	int allpatternCut = 8;

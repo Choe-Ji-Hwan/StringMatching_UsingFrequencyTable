@@ -26,7 +26,6 @@ void RestoreMySequence::doProcess(std::string resultFileName, int patternCutSize
 
 	FrequencyTable* table = new FrequencyTable(referline, patternCutSize, originalSize);	// 테이블 초기 생성t
 	table->makeTable();	// 테이블 완성
-	
 
 	std::cout << "버퍼 사이즈는: " << shortreadline.size()-1 << std::endl; 
 	std::string* buffer = new std::string[shortreadline.size()-1]; 	// 마지막 "\n" 때문에 걸러줌
@@ -46,7 +45,7 @@ void RestoreMySequence::doProcess(std::string resultFileName, int patternCutSize
 
 		for (j = 0; j < cutSize - patternCutSize; j++) {	// k=30, cut = 8, 30개 string에서 8개 기준으로 자르기
 			checkString = buffer[i].substr(j, patternCutSize);
-			std::cout << "checkstring: " << checkString << std::endl;
+			//std::cout << "checkstring: " << checkString << std::endl;
 			int getindex = 0;
 			// find string
 			for (int k = 1; k <= patternCutSize; k++) {
@@ -81,12 +80,20 @@ void RestoreMySequence::doProcess(std::string resultFileName, int patternCutSize
 			//std::cout << "index: "<<newindex << std::endl;
 
 			bool isfind = false;
-			std::cout << "getindex: " << newGetIndex <<" 선택된 pattern은 " << table->getPattern(newGetIndex) << std::endl;
+			//std::cout << "\ngetindex: " << newGetIndex <<" 선택된 pattern은 " << table->getPattern(newGetIndex) << std::endl;
 			for (int ref = 0; ref < table->getStartIndexArray(newGetIndex).size(); ref++) {
+
+				if (table->getStartIndexArray(newGetIndex)[ref] - newindex < 0) {
+					std::cout << "newindex : " << newindex << ", table에서 가져온 index: " << table->getStartIndexArray(newGetIndex)[ref] - newindex
+						<< ", size는 " << table->getStartIndexArray(newGetIndex).size() << std::endl;
+					std::cout << "여기가 문제임" << std::endl;
+					continue;
+				}
 				std::string partReferLine = referline.substr(table->getStartIndexArray(newGetIndex)[ref]-newindex, cutSize);
+				//std::cout << "가져온 것 " << partReferLine << std::endl;
 				int mismatches = 0;
 				// 기준에서 접두부 체크
-				std::cout << partReferLine << ": 접두부 체크 들어감, ";
+				//std::cout << partReferLine << ": 접두부 체크 들어감, ";
 				for (int o = 0; o < newindex; o++) {
 
 					//std::cout << "현재 buffer[" << i << "][" << o << "] 의 값: " << buffer[i][o] << std::endl;
@@ -109,7 +116,7 @@ void RestoreMySequence::doProcess(std::string resultFileName, int patternCutSize
 				// 기준이 된 패턴 쪽에서는 이미 일치하니, pass
 
 				// 기준에서 접미부 체크
-				std::cout << "접미부 체크 들어감 " << std::endl;;
+				//std::cout << "접미부 체크 들어감 " << std::endl;;
 				for (int q = newindex + patternCutSize; q < cutSize; q++) {
 					//std::cout << "현재 buffer[" << i << "][" << q << "] 의 값: " << buffer[i][q] << std::endl;
 					//std::cout << "비교대상값: " << partReferLine << std::endl;
@@ -130,7 +137,7 @@ void RestoreMySequence::doProcess(std::string resultFileName, int patternCutSize
 				}
 
 				// 여기까지 왔다면 일치하는 것임.
-				std::cout << "일치화면 들어감 " << std::endl;
+				//std::cout << "일치화면 들어감 " << std::endl;
 				if (mismatches <= allowMismatches) {	// mismatches 수 이하면, k까지 다 돌았을 것.
 					//std::cout << "바뀐 것 존재 " << std::endl;
 					int s;
@@ -151,7 +158,7 @@ void RestoreMySequence::doProcess(std::string resultFileName, int patternCutSize
 				break;
 			}
 		}
-		std::cout << "buffer count : " << i << std::endl;
+		//std::cout << "buffer count : " << i << std::endl;
 		delete minArray;
 	}
 	// 파일에 넣기
