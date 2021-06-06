@@ -31,20 +31,26 @@ static std::string getFileString2(std::string file) {
 
 
 int main() {
-	MakeFileGenerator factory;
+	MakeFileGenerator* factory = new MakeFileGenerator();
 
 	// make table
-	factory.makeRandomFile(REFER, "reference.txt");
+	cout << REFER << "개의 DNA reference 생성" << endl;
+	factory->makeRandomFile(REFER, "reference.txt");
 	//string reference = factory.getFileString("reference.txt");
 
 	// make mysequence, short read
 	int k = 30;
-	factory.makeMySqeunce(k, REFER, "reference.txt", "mysequence.txt");
-	factory.makeShortRead(k, REFER, 40000, "mysequence.txt" , "shortread.txt");
+	int n = 40000;
+	factory->makeMySqeunce(k, REFER, "reference.txt", "mysequence.txt");
+	cout << k << " 사이즈의 랜덤으로 " << n << "개의 short read를 만듭니다." << endl;
+	factory->makeShortRead(k, REFER, n, "mysequence.txt" , "shortread.txt");
 
 	// matching
 	int allpatternCut = 8;
-	RestoreMySequence restore(k, REFER, "reference.txt", "shortread.txt");
-	restore.doProcess("resultMySequence.txt", allpatternCut);
-	restore.showMatchingRate("mysequence.txt", "result.txt");
+	RestoreMySequence* restore = new RestoreMySequence(k, REFER, "reference.txt", "shortread.txt");
+	restore->doProcess("resultMySequence.txt", allpatternCut);
+	restore->showMatchingRate("mysequence.txt", "result.txt");
+
+	delete factory;
+	delete restore;
 }

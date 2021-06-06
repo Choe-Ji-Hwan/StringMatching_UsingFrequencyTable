@@ -45,7 +45,7 @@ void FrequencyTable::makeRows() // 열을 채우면서 행을 완성하면서 만들기
 	std::vector<char> combi(originalSize);
 	fillTheTable(combi, 0, 0);	// 첫번 째 열 채우기
 	findStartIndex(); // 2, 3번째 열 채우기 
-	std::cout << "열 완성" << std::endl;
+	std::cout << "table 완성" << std::endl;
 }
 
 void FrequencyTable::fillTheTable(std::vector<char> combi, int index, int depth) // 재귀를 이용해서 채우기 
@@ -85,13 +85,13 @@ void FrequencyTable::findStartIndex() {
 				case 'A':
 					break;
 				case 'C':
-					index +=  (pow(4, cutSize-1 - j));
+					index +=  (pow(4, cutSize-1 - j));	// 수식으로 index 계산
 					break;
 				case 'G':
-					index += (2 * pow(4, cutSize - 1 - j));
+					index += (2 * pow(4, cutSize - 1 - j)); // 수식으로 index 계산
 					break;
 				case 'T':
-					index += (3 * pow(4, cutSize - 1 - j));
+					index += (3 * pow(4, cutSize - 1 - j)); // 수식으로 index 계산
 					break;
 				}
 			}

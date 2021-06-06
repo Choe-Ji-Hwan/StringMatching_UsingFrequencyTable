@@ -9,12 +9,13 @@ public:
 	void showMatchingRate(std::string myFileName, std::string resultFileName);
 
 private:
-	//bool compare(std::pair<int, std::pair<int, int>>& a, std::pair<int, std::pair<int, int>>& b);
 
 	std::string referline;
 	std::vector<std::string> shortreadline;
 	std::string resultline;
 
-	int cutSize;
+	int cutSize;	// short read 자르는 크기 사이즈
 	int originalSize;
+
+	int patternCutSize;	// common 8, table 1열 사이즈
 };

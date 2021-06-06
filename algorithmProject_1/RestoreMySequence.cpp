@@ -15,8 +15,7 @@ bool compare(std::pair<int, std::pair<int, int>>& a, std::pair<int, std::pair<in
 }
 
 void RestoreMySequence::doProcess(std::string resultFileName, int patternCutSize) {
-	std::cout << "restore 중" <<std::endl;
-	std::chrono::system_clock::time_point start = std::chrono::system_clock::now();
+	std::cout << "restoring..." <<std::endl;
 	MakeFileGenerator factory;
 	factory.setFileRepeatString(originalSize, "result.txt", " ");
 	std::string resultline = factory.getFileString("result.txt");
@@ -24,10 +23,12 @@ void RestoreMySequence::doProcess(std::string resultFileName, int patternCutSize
 	//std::cout << "refer: " << referline.size() << std::endl;
 	//std::cout << "short: " << shortreadline.size() << std::endl;
 
+	std::cout << patternCutSize << "개의 모든 경우의 수를 행의 개수로 table을 만듭니다." << std::endl;
 	FrequencyTable* table = new FrequencyTable(referline, patternCutSize, originalSize);	// 테이블 초기 생성t
 	table->makeTable();	// 테이블 완성
 
-	std::cout << "버퍼 사이즈는: " << shortreadline.size()-1 << std::endl; 
+	std::chrono::system_clock::time_point start = std::chrono::system_clock::now();
+	//std::cout << "버퍼 사이즈는: " << shortreadline.size()-1 << std::endl; 
 	std::string* buffer = new std::string[shortreadline.size()-1]; 	// 마지막 "\n" 때문에 걸러줌
 
 	for (int i = 0; i < shortreadline.size()-1; i++) {
