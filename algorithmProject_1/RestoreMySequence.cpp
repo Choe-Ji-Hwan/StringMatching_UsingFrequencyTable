@@ -17,8 +17,8 @@ bool compare(std::pair<int, std::pair<int, int>>& a, std::pair<int, std::pair<in
 void RestoreMySequence::doProcess(std::string resultFileName, int patternCutSize) {
 	std::cout << "restoring..." <<std::endl;
 	MakeFileGenerator factory;
-	factory.setFileRepeatString(originalSize, "result.txt", " ");
-	std::string resultline = factory.getFileString("result.txt");
+	factory.setFileRepeatString(originalSize, resultFileName, " ");
+	std::string resultline = factory.getFileString(resultFileName);
 
 	//std::cout << "refer: " << referline.size() << std::endl;
 	//std::cout << "short: " << shortreadline.size() << std::endl;

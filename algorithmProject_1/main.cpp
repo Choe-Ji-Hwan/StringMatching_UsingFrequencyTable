@@ -34,22 +34,22 @@ int main() {
 	MakeFileGenerator* factory = new MakeFileGenerator();
 
 	// make table
-	cout << REFER << "개의 DNA reference 생성" << endl;
-	factory->makeRandomFile(REFER, "reference.txt");
+	//cout << REFER << "개의 DNA reference 생성" << endl;
+	//factory->makeRandomFile(REFER, "reference.txt");
 	//string reference = factory.getFileString("reference.txt");
 
 	// make mysequence, short read
-	int k = 30;
-	int n = 40000;
-	factory->makeMySqeunce(k, REFER, "reference.txt", "mysequence.txt");
-	cout << k << " 사이즈의 랜덤으로 " << n << "개의 short read를 만듭니다." << endl;
-	factory->makeShortRead(k, REFER, n, "mysequence.txt" , "shortread.txt");
+	//factory->makeMySqeunce(k, REFER, "reference.txt", "mysequence.txt");
+	//cout << k << " 사이즈의 랜덤으로 " << n << "개의 short read를 만듭니다." << endl;
+	//factory->makeShortRead(k, REFER, n, "mysequence.txt" , "shortread.txt");
 
 	// matching
+	int k = 100;
+	int n = 11000;
 	int allpatternCut = 8;
-	RestoreMySequence* restore = new RestoreMySequence(k, REFER, "reference.txt", "shortread.txt");
-	restore->doProcess("resultMySequence.txt", allpatternCut);
-	restore->showMatchingRate("mysequence.txt", "result.txt");
+	RestoreMySequence* restore = new RestoreMySequence(k, REFER, "ref.txt", "shortread.txt");
+	restore->doProcess("result.txt", allpatternCut);
+	restore->showMatchingRate("mydna.txt", "result.txt");
 
 	delete factory;
 	delete restore;
