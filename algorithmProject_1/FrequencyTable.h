@@ -10,16 +10,16 @@ public:
 
 	FrequencyTable(std::string input, int cut, int stringSize);
 	~FrequencyTable();
-	void makeTable();
+	void makeTable(std::string referfilename);
 
 	std::string getPattern(int index);
 	int getFrequency(int index);
 	std::vector<int> getStartIndexArray(int index);
 
 private:
-	void makeRows();
+	void makeRows(std::string referfilename);
 	void fillTheTable(std::vector<char> combi, int index, int depth);
-	void findStartIndex();
+	void findStartIndex(std::string referfilename);
 
 	char dnaString[4] = { 'A', 'C', 'G', 'T' };
 	std::string originalString;

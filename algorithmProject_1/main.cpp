@@ -35,17 +35,18 @@ int main() {
 
 	// make table
 	//cout << REFER << "개의 DNA reference 생성" << endl;
-	//factory->makeRandomFile(REFER, "reference.txt");
+	//factory->makeRandomFile(REFER, "ref.txt");
 	//string reference = factory.getFileString("reference.txt");
 
 	// make mysequence, short read
-	//factory->makeMySqeunce(k, REFER, "reference.txt", "mysequence.txt");
-	//cout << k << " 사이즈의 랜덤으로 " << n << "개의 short read를 만듭니다." << endl;
-	//factory->makeShortRead(k, REFER, n, "mysequence.txt" , "shortread.txt");
 
-	// matching
 	int k = 100;
 	int n = 11000;
+	//factory->makeMySqeunce(k, REFER, "ref.txt", "mydna.txt");
+	//cout << k << " 사이즈의 랜덤으로 " << n << "개의 short read를 만듭니다." << endl;
+	//factory->makeShortRead(k, REFER, n, "mydna.txt" , "shortread.txt");
+
+	// matching
 	int allpatternCut = 8;
 	RestoreMySequence* restore = new RestoreMySequence(k, REFER, "ref.txt", "shortread.txt");
 	restore->doProcess("result.txt", allpatternCut);

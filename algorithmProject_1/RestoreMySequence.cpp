@@ -3,6 +3,7 @@
 RestoreMySequence::RestoreMySequence(int cut, int originsize, std::string referFileName, std::string shortreadFileName)
 	: cutSize(cut), originalSize(originsize) {
 	MakeFileGenerator factory;	// file에서 string으로 가져오기
+	referencefilename = referFileName;
 	referline = factory.getFileString(referFileName);
 	shortreadline = factory.getStringForSR(shortreadFileName);
 	resultline = "";
@@ -25,7 +26,7 @@ void RestoreMySequence::doProcess(std::string resultFileName, int patternCutSize
 
 	std::cout << patternCutSize << "개의 모든 경우의 수를 행의 개수로 table을 만듭니다." << std::endl;
 	FrequencyTable* table = new FrequencyTable(referline, patternCutSize, originalSize);	// 테이블 초기 생성t
-	table->makeTable();	// 테이블 완성
+	table->makeTable(referencefilename);	// 테이블 완성
 
 	std::chrono::system_clock::time_point start = std::chrono::system_clock::now();
 	//std::cout << "버퍼 사이즈는: " << shortreadline.size()-1 << std::endl; 
@@ -159,7 +160,7 @@ void RestoreMySequence::doProcess(std::string resultFileName, int patternCutSize
 	}
 	// 파일에 넣기
 	delete[] buffer;
-	factory.setFileString("result.txt", resultline);
+	factory.setFileString(resultFileName, resultline);
 	std::chrono::duration<double> sec = std::chrono::system_clock::now() - start;
 	std::cout << "매칭에 걸린 시간 : " << sec.count() << " seconds" << std::endl;
 }

@@ -13,6 +13,7 @@ private:
 	std::string referline;
 	std::vector<std::string> shortreadline;
 	std::string resultline;
+	std::string referencefilename;
 
 	int cutSize;	// short read 자르는 크기 사이즈
 	int originalSize;

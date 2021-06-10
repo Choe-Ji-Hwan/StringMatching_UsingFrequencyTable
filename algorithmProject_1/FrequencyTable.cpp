@@ -17,12 +17,12 @@ FrequencyTable::~FrequencyTable() {
 	delete startIndex;
 }
 
-void FrequencyTable::makeTable() {
+void FrequencyTable::makeTable(std::string referfilename) {
 	std::cout << "table을 만들기 시작합니다." << std::endl;
 	std::chrono::system_clock::time_point start = std::chrono::system_clock::now();
 
 	// 모든 경우의 수 넣기
-	makeRows();	// 각각의 row들을 만드는 중.
+	makeRows(referfilename);	// 각각의 row들을 만드는 중.
 
 	std::chrono::duration<double> sec = std::chrono::system_clock::now() - start;
 	std::cout << "table 만드는데 걸리는 시간 " << sec.count() << " seconds" << std::endl;
@@ -40,11 +40,11 @@ std::vector<int> FrequencyTable::getStartIndexArray(int index) {
 	return startIndex[index];
 }
 
-void FrequencyTable::makeRows() // 열을 채우면서 행을 완성하면서 만들기
+void FrequencyTable::makeRows(std::string referfilename) // 열을 채우면서 행을 완성하면서 만들기
 {
 	std::vector<char> combi(originalSize);
 	fillTheTable(combi, 0, 0);	// 첫번 째 열 채우기
-	findStartIndex(); // 2, 3번째 열 채우기 
+	findStartIndex(referfilename); // 2, 3번째 열 채우기 
 	std::cout << "table 완성" << std::endl;
 }
 
@@ -67,11 +67,11 @@ void FrequencyTable::fillTheTable(std::vector<char> combi, int index, int depth)
 }
 
 
-void FrequencyTable::findStartIndex() {
+void FrequencyTable::findStartIndex(std::string referfilename) {
 
 	MakeFileGenerator factory;
 
-	std::string reference = factory.getFileString("reference.txt");
+	std::string reference = factory.getFileString(referfilename);
 	std::istringstream ss(reference);
 
 	std::string line, window;
