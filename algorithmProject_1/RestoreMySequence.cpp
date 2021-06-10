@@ -15,7 +15,7 @@ bool compare(std::pair<int, std::pair<int, int>>& a, std::pair<int, std::pair<in
 	else return a.first < b.first;
 }
 
-void RestoreMySequence::doProcess(std::string resultFileName, int patternCutSize) {
+void RestoreMySequence::doProcess(std::string resultFileName, int patternCutSize, int k) {
 	std::cout << "restoring..." <<std::endl;
 	MakeFileGenerator factory;
 	factory.setFileRepeatString(originalSize, resultFileName, " ");
@@ -70,7 +70,7 @@ void RestoreMySequence::doProcess(std::string resultFileName, int patternCutSize
 		//	std::cout << "getindex: " << minArray[ii].second.second << std::endl;
 		//}
 
-		int allowMismatches = 4;
+		int allowMismatches = k/4;
 		std::vector<int> mismatchesindex;
 		for (int in = 0; in < cutSize - patternCutSize; in++) {
 			if (minArray[in].first == 0) continue;

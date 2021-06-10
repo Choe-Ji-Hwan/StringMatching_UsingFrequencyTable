@@ -5,7 +5,7 @@
 class RestoreMySequence {
 public:
 	RestoreMySequence(int cut, int originsize, std::string referFileName, std::string shortreadFileName);
-	void doProcess(std::string resultFileName, int patternCutSize);
+	void doProcess(std::string resultFileName, int patternCutSize, int k);
 	void showMatchingRate(std::string myFileName, std::string resultFileName);
 
 private:

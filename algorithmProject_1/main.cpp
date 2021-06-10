@@ -49,7 +49,7 @@ int main() {
 	// matching
 	int allpatternCut = 8;
 	RestoreMySequence* restore = new RestoreMySequence(k, REFER, "ref.txt", "shortread.txt");
-	restore->doProcess("result.txt", allpatternCut);
+	restore->doProcess("result.txt", allpatternCut, k);
 	restore->showMatchingRate("mydna.txt", "result.txt");
 
 	delete factory;
