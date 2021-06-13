@@ -6,10 +6,9 @@ c:\users\wlghk\source\repos\algorithmproject_1\algorithmproject_1\restoremyseque
 c:\users\wlghk\source\repos\algorithmproject_1\algorithmproject_1\restoremysequence.cpp(131): warning C4018: '<': signed/unsigned mismatch
 c:\users\wlghk\source\repos\algorithmproject_1\algorithmproject_1\restoremysequence.cpp(150): warning C4018: '<': signed/unsigned mismatch
 c:\users\wlghk\source\repos\algorithmproject_1\algorithmproject_1\restoremysequence.cpp(140): warning C4101: 's': unreferenced local variable
-  main.cpp
   Generating code
   2 of 535 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
-    1 functions were new in current compilation
+    0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   algorithmProject_1.vcxproj -> C:\Users\wlghk\source\repos\algorithmProject_1\Release\algorithmProject_1.exe

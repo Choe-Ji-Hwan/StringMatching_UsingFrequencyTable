@@ -70,7 +70,7 @@ void RestoreMySequence::doProcess(std::string resultFileName, int patternCutSize
 		//	std::cout << "getindex: " << minArray[ii].second.second << std::endl;
 		//}
 
-		int allowMismatches = k/4;
+		int allowMismatches = 4;
 		std::vector<int> mismatchesindex;
 		for (int in = 0; in < cutSize - patternCutSize; in++) {
 			if (minArray[in].first == 0) continue;

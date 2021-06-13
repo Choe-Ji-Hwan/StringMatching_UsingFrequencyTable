@@ -31,7 +31,7 @@ static std::string getFileString2(std::string file) {
 
 
 int main() {
-	MakeFileGenerator* factory = new MakeFileGenerator();
+	//MakeFileGenerator* factory = new MakeFileGenerator();
 
 	// make table
 	//cout << REFER << "개의 DNA reference 생성" << endl;
@@ -52,6 +52,6 @@ int main() {
 	restore->doProcess("result.txt", allpatternCut, k);
 	restore->showMatchingRate("mydna.txt", "result.txt");
 
-	delete factory;
+	//delete factory;
 	delete restore;
 }
